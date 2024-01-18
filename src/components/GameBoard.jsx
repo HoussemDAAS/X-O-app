@@ -1,19 +1,30 @@
 import React from "react";
-
+import { useState } from "react";
 const GameBoard = () => {
   const board = [
     [null, null, null],
     [null, null, null],
     [null, null, null],
   ];
+
+
+  const [gameBoard, setGameBoard] = useState(board);
+
+  const handleClick = (rowIndex, colIndex) => {
+    setGameBoard((prevGameBoard)=>
+    { const updateGameBoard = [...prevGameBoard.map(innerArray =>[...innerArray])];
+updateGameBoard[rowIndex][colIndex] = 'X';
+return updateGameBoard;
+    });
+  }
   return (
     <ol id="game-board">
-      {board.map((row, rowIndex) => (
+      {gameBoard.map((row, rowIndex) => (
         <li key={rowIndex}>
           <ol>
-            {row.map((playerSymbol, colIndex) => (
+            {row.map((playerSymbole, colIndex) => (
               <li key={colIndex}>
-                <button>{playerSymbol}</button>
+                <button onClick={() =>handleClick(rowIndex,colIndex)}>{playerSymbole}</button>
               </li>
             ))}
           </ol>
