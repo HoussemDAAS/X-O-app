@@ -1,20 +1,19 @@
 import React from "react";
 import { useState } from "react";
 
-const Player = ({ player, symbol }) => {
+const Player = ({ player, symbol,isActive }) => {
   const [name, setName] = useState(player);
   const [isEditing, setIsEditing] = useState(false);
-   
-  let handlePlayer =(event)=>{
-    
-setName(event.target.value);
-  }
+
+  let handlePlayer = (event) => {
+    setName(event.target.value);
+  };
   let status = "save";
   if (isEditing) {
     let status = "edit";
   }
   return (
-    <li>
+    <li className={isActive ? "active" : ""}>
       <span className="player">
         {!isEditing ? (
           <span className="player-name">{name}</span>
