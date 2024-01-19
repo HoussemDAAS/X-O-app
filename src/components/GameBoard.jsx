@@ -8,7 +8,13 @@ const GameBoard = ({onSelectedPlayer,turns}) => {
     [null, null, null],
     [null, null, null],
   ];
-
+  
+  let gameBoard = board;
+  for( const turn of turns){
+      const {square,player} = turn ;
+      const {row,col} = square;
+      gameBoard[row][col]=player;
+    }
 
 //   const [gameBoard, setGameBoard] = useState(board);
 
@@ -20,12 +26,6 @@ const GameBoard = ({onSelectedPlayer,turns}) => {
 //     });
 //    onSelectedPlayer(); 
 //   }
-let gameBoard = board;
-for( const turn of turns){
-    const {square,player} = turn ;
-    const {row,col} = square;
-    gameBoard[row][col]=player;
-}
   return (
     <ol id="game-board">
       {gameBoard.map((row, rowIndex) => (
@@ -33,7 +33,7 @@ for( const turn of turns){
           <ol>
             {row.map((playerSymbole, colIndex) => (
               <li key={colIndex}>
-                <button onClick={() =>handleClick(rowIndex,colIndex)}>{playerSymbole}</button>
+                <button onClick={() =>onSelectedPlayer(rowIndex,colIndex)}>{playerSymbole}</button>
               </li>
             ))}
           </ol>
