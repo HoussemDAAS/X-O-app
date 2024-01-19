@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-const GameBoard = ({ onSelectedPlayer, game}) => {
+const GameBoard = ({ onSelectedPlayer, game }) => {
 
   return (
     <ol id="game-board">
